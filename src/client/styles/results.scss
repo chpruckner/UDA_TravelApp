@@ -1,0 +1,23 @@
+#results {
+  display: none;
+}
+
+#results.show {
+  display: block;
+}
+
+#results h3 {
+  font-size: 23px;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.char {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}

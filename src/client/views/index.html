@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif&display=swap" rel="stylesheet">
+    <title>Natural Language Processing Tool</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Text Analysis</h1>
+      <p>Evaluate a News Article or Blog Post with Natural Language Processing.</p>
+    </header>
+
+    <main>
+      <section>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+          <input
+          id="url"
+          type="text"
+          name="input"
+          value=""
+          placeholder="Enter URL here"
+        />
+          <input
+            type="submit"
+            name=""
+            value="Analyse"
+            onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)"
+          />
+        </form>
+      </section>
+
+      <section id="results">
+        <h3>The provided text has the following characteristics:</h3>
+        <div class="char">
+          <div class="char-agree">Agreement:</div>
+          <div class="char-agree-content"></div>
+          <div class="char-sub">Subjectivity:</div>
+          <div class="char-sub-content"></div>
+          <div class="char-confi">Confidence:</div>
+          <div class="char-confi-content"></div>
+          <div class="char-irony">Irony:</div>
+          <div class="char-irony-content"></div>
+          <div class="char-score">Score Tag:</div>
+          <div class="char-score-content"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Christiane Pruckner</p>
+    </footer>
+    <!-- <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/service-worker.js');
+          });
+      }
+    </script> -->
+  </body>
+</html>
