@@ -1,31 +1,37 @@
-form {
-    padding: 40px;
-    border: 5px solid var(--primary);
-    border-radius: 3px;
-}
+@import "variables.scss";
 
-input,
-textarea {
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+
+  &-inputs {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    padding: 5px 20px;
-    margin: 10px 0;
-    line-height: 16px;
+
+    input {
+      width: 48%;
+      padding: 5px 20px;
+      margin: 10px 0;
+      line-height: 16px;
+    }
+  }
+
+  &-submit {
+    width: 100%;
+    border: 4px solid $primary;
+    background-color: $primary;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    color: $light;
+
+    &:hover {
+      background-color: $bg;
+      color: $primary;
+      cursor: pointer;
+    }    
+  }
 }
 
-input#url {
-  background-color: white;
-}
-
-input[type=submit] {
-  border: 4px solid var(--primary);
-  background-color: var(--primary);
-  font-family: "Noto Sans", sans-serif;
-  font-size: 16px;
-  color: var(--light);
-}
-
-input[type=submit]:hover {
-  background-color: var(--bg);
-  color: var(--primary);
-  cursor: pointer;
-}

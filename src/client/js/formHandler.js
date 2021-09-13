@@ -6,7 +6,7 @@ const handleSubmit = (event) => {
   let userUrl = document.getElementById("url").value;
 
   if (Client.checkInput(userUrl)) {
-    fetch("/evaluation", {
+    fetch("/travel", {
       method: "POST",
       credentials: "same-origin",
       headers: {

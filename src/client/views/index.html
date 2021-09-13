@@ -2,31 +2,44 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif&display=swap" rel="stylesheet">
-    <title>Natural Language Processing Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Travel Planner</title>
   </head>
 
   <body>
     <header>
-      <h1>Text Analysis</h1>
-      <p>Evaluate a News Article or Blog Post with Natural Language Processing.</p>
+      <h1>Travel Planner</h1>
     </header>
 
     <main>
       <section>
-        <form class="" onsubmit="return Client.handleSubmit(event)">
+        <form class="trip-form" onsubmit="return Client.handleSubmit(event)">
+          <div class="trip-form-inputs">
+            <input
+              id="city" 
+              class="trip-form-inputs__city"
+              type="text"
+              name="city"
+              value=""
+              placeholder="Enter destination here"
+            />
+            <input 
+              id="start-date" 
+              class="trip-form-inputs__date"
+              type="date" 
+              name="start-date" 
+              value=""
+            />
+          </div>
           <input
-          id="url"
-          type="text"
-          name="input"
-          value=""
-          placeholder="Enter URL here"
-        />
-          <input
+            class="trip-form-submit"
             type="submit"
             name=""
-            value="Analyse"
+            value="Add Trip"
             onclick="return Client.handleSubmit(event)"
             onsubmit="return Client.handleSubmit(event)"
           />
@@ -34,18 +47,20 @@
       </section>
 
       <section id="results">
-        <h3>The provided text has the following characteristics:</h3>
-        <div class="char">
-          <div class="char-agree">Agreement:</div>
-          <div class="char-agree-content"></div>
-          <div class="char-sub">Subjectivity:</div>
-          <div class="char-sub-content"></div>
-          <div class="char-confi">Confidence:</div>
-          <div class="char-confi-content"></div>
-          <div class="char-irony">Irony:</div>
-          <div class="char-irony-content"></div>
-          <div class="char-score">Score Tag:</div>
-          <div class="char-score-content"></div>
+        <h2>Your planned trips</h2>
+        <div class="trip-list">
+          <div id="1" class="trip-list-item">
+            <img src="http://placekitten.com/300/250" alt="" class="trip-list-item-img" >
+            <div class="trip-list-item-body">
+              <h3 class="trip-list-item-dest">Trip to: London, UK</h3>
+              <h3 class="trip-list-item-start">Starting: 24.09.2021</h3>
+              <div class="trip-list-item-until">This trip is 11 days away</div>
+              <div class="trip-list-item-weather">
+                The weather will be:
+                <p>some weather</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

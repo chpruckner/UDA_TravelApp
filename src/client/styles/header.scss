@@ -1,13 +1,16 @@
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 40px;
-    text-align: center;
-}
+@import "variables.scss";
 
-header h1 {
-  margin: 2rem 0;
-  font-size: 42px;
-  border-bottom: 2px solid var(--primary);
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: $secondary;
+
+  h1 {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem 0;
+    font-size: 42px;
+  }
 }

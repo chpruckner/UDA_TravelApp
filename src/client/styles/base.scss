@@ -1,19 +1,12 @@
-:root {
-  --bg: #fffcf2;
-  --primary: #eb5e28;
-  --secondary: #403d39;
-  --light: #fffcff;
-  --font-col: #403d39;
-  --footer-bg: #252422;
-  --footer-font: #ccc5b9;
-}
+@import "variables.scss";
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: "Noto Sans", sans-serif;
-    background-color: var(--bg);
+    font-family: "Roboto", sans-serif;
+    background-color: $bg;
+    color: $font-col;
 }
 
 main {
@@ -23,9 +16,9 @@ main {
 section {
     width: 90%;
     max-width: 800px;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
 h1, h2, h3 {
-  font-family: "Noto Serif", serif;
+  font-family: "Permanent Marker", cursive;
 }

@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // POST route
-app.post("/evaluation", async (req, res) => {
+app.post("/travel", async (req, res) => {
   console.log("Request received");
   const url = req.body.url;
   const apiKey = process.env.API_KEY;
