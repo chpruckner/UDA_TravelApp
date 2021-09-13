@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
+    "build-dev": "webpack-dev-server  --config webpack.dev.js --open",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Christiane Pruckner",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jest": "^27.2.0",
     "node-fetch": "^2.6.2",
     "node-polyfill-webpack-plugin": "^1.1.4",
     "webpack": "^5.37.0",
