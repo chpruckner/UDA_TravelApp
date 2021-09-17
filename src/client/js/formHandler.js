@@ -26,8 +26,8 @@ const handleSubmit = (event) => {
       });
 
   } else {
-    console.error(`${date} is not a valid date, because it is in the past.`);
-    alert("Please enter a date that is not in the past!");
+    console.error("Date must be filled out and not in the past.");
+    alert("Please enter a valid date that is not in the past!");
   }
 };
 
