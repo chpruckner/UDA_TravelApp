@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
 app.post("/travel", async (req, res) => {
   console.log("Request received");
   const {city, date, days} = req.body;
+
   // api keys
   const geoNamesKEY = process.env.GN_USER;
   const weatherKEY = process.env.WB_KEY;
@@ -37,13 +38,14 @@ app.post("/travel", async (req, res) => {
   const geoNamesURL = "http://api.geonames.org/searchJSON?";
   const weatherURL = "http://api.weatherbit.io/v2.0/";
   const pixelbayURL = "https://pixabay.com/api/";
-  // all data from the api calls
+
   let name = ""; // city name
   let lat = "";
   let lng = "";
   let countryCode = "";
   let countryName = "";
 
+  // fetching data from geonames.org API
   const GNRes1 = await fetch(
     `${geoNamesURL}q=${city}&maxRows=1&username=${geoNamesKEY}`
   );
@@ -52,31 +54,29 @@ app.post("/travel", async (req, res) => {
     const GNRes2 = await GNRes1.json();
 
     // check if a city with the name was found
-    if (GNRes2.totalResultsCount < 1) {
-      res.send({name: "not found"});
-      return
-    } else {
+    if (GNRes2.totalResultsCount > 1) {
       name = GNRes2.geonames[0].name;
       lat = GNRes2.geonames[0].lat;
       lng = GNRes2.geonames[0].lng;
       countryCode = GNRes2.geonames[0].countryCode;
       countryName = GNRes2.geonames[0].countryName;
 
-      currTrip = { name, countryCode, countryName };
-      //console.log({currTrip});
+      currTrip = { name, countryCode, countryName, date };
+
+    } else {
+      res.send({name: "not found"});
+      return
     }
-    //res.send(data);
   } catch (err) {
     console.error(err);
   }
 
-  //console.log({days});
+  // fetch weather from weatherbit.io 
   if (days < 16) {
     const WBRes1 = await fetch(`${weatherURL}forecast/daily?lat=${lat}&lon=${lng}&key=${weatherKEY}&days=${days+1}`)
 
     try {
       const WBRes2 = await WBRes1.json();
-      //console.log(WBRes2);
       const { data } = WBRes2;
 
       currTrip.max_temp       = data[days].max_temp;
@@ -89,12 +89,12 @@ app.post("/travel", async (req, res) => {
       currTrip.wind_spd       = data[days].wind_spd;
       currTrip.pop            = data[days].pop;
 
-      //res.send(currTrip);
-      console.log({currTrip});
+      //console.log({currTrip});
 
     } catch (error) {
       console.error(error);
     }
+
   } else if (days > 16) {
     currTrip.max_temp = "n/a";
     currTrip.min_temp = "n/a";
@@ -105,11 +105,10 @@ app.post("/travel", async (req, res) => {
     currTrip.wind_cdir_full = "n/a";
     currTrip.wind_spd = "n/a";
     currTrip.pop = "n/a";
-
-    //res.send(currTrip)
   }
 
-  const PBRes1 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${name}&image_type=photo&orientation=horizontal`)
+  // fetch picture of city (or country) from pixabay.com
+  const PBRes1 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${name}&image_type=photo`)
 
   try {
     const PBRes2 = await PBRes1.json();
@@ -119,8 +118,8 @@ app.post("/travel", async (req, res) => {
       currTrip.picHeight = PBRes2.hits[0].webformatHeight;
       currTrip.picWidth  = PBRes2.hits[0].webformatWidth;
     } else {
-
-      const PBRes3 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${countryName}&image_type=photo&orientation=horizontal`);
+      // if the city has no result look for pics of country
+      const PBRes3 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${countryName}&image_type=photo`);
 
       try {
         const PBRes4 = await PBRes3.json();
@@ -132,7 +131,12 @@ app.post("/travel", async (req, res) => {
         console.error(err);
       }
     }
-    res.send(currTrip)
+    
+    // push current trip in tripList array
+    tripList.push(currTrip);
+    res.send(tripList);
+    console.log("Response sent");
+
   } catch (err) {
     console.error(err);
   }

@@ -1,77 +1,73 @@
-const showResult = (data) => {
-  /* const agreement = document.querySelector(".char-agree-content");
-  const subjectivity = document.querySelector(".char-sub-content");
-  const confidence = document.querySelector(".char-confi-content");
-  const irony = document.querySelector(".char-irony-content");
-  const score_tag = document.querySelector(".char-score-content"); */
+const showResult = (arr, days) => {
+  const container = document.getElementById("trip-container");
+  const destInput = document.getElementById("city");
+  const dateInput = document.getElementById("start-date");
 
-  //show result div
+  //show result section
   document.getElementById("results").classList.add("show");
 
-  // clear last result
-  /* agreement.innerHTML = "";
-  subjectivity.innerHTML = "";
-  confidence.innerHTML = "";
-  irony.innerHTML = "";
-  score_tag.innerHTML = "";
+  // clear previous results
+  container.innerHTML = "";
 
-  switch (data.agreement) {
-    case "AGREEMENT":
-      agreement.innerHTML = "the different elements have the same polarity.";
-      break;
-  
-    case "DISAGREEMENT":
-      agreement.innerHTML = "there is disagreement between the different elements' polarity.";
-      break;
-  }
+  // create card for each trip saved in the array
+  let i = 1;
+  arr.forEach(trip => {
+      // creating card with content
+      const card = document.createElement("div");
+      card.classList.add("trip-list-item");
+      const id = i.toString();
+      card.setAttribute("id", id);
+      i++;
 
-  switch (data.subjectivity) {
-    case "OBJECTIVE":
-      subjectivity.innerHTML = "the text does not have any subjectivity marks.";
-      break;
-  
-    case "SUBJECTIVE":
-      subjectivity.innerHTML = "the text has subjective marks.";
-      break;
-  }
+      const picCont = document.createElement("div");
+      picCont.classList.add("trip-list-item-img");
 
-  confidence.innerHTML = data.confidence;
+      const pic = document.createElement("img");
+      pic.setAttribute("alt", "");
+      pic.setAttribute("src", trip.picUrl);
+      pic.setAttribute("width", trip.picWidth);
+      pic.setAttribute("height", trip.picHeight);
 
-  switch (data.irony) {
-    case "NONIRONIC":
-      irony.innerHTML = "the text does not have any irony marks.";
-      break;
-  
-    case "IRONIC":
-      irony.innerHTML = "the text has irony marks.";
-      break;
-  }
+      const cardBody = document.createElement("div");
+      cardBody.classList.add("trip-list-item-body");
 
-  switch (data.score_tag) {
-    case "P+":
-      score_tag.innerHTML = "strong positive";
-      break;
+      const dest = document.createElement("h3");
+      dest.classList.add("trip-list-item-dest");
+      dest.innerHTML = `Trip to: ${trip.name}, ${trip.countryCode}`;
 
-    case "P":
-      score_tag.innerHTML = "positive";
-      break;
+      const date = document.createElement("h3");
+      date.classList.add("trip-list-item-start");
+      date.innerHTML = `Starting: ${trip.date}`;
 
-    case "NEU":
-      score_tag.innerHTML = "neutral";
-      break;
+      const time = document.createElement("div");
+      time.classList.add("trip-list-item-until");
+      days > 0 ? time.innerHTML = `This trip is ${days} days away.`: time.innerHTML = "The trip starts today!";
 
-    case "N":
-      score_tag.innerHTML = "negative";
-      break;
+      const weather = document.createElement("div");
+      weather.classList.add("trip-list-item-weather");
+      const descr = trip.weather_desc;
+      weather.innerHTML = 
+      `<p>The weather in ${trip.name} is ${descr.toLowerCase()} with a temperature between  ${trip.min_temp}°C and ${trip.max_temp}°C and a relative humidity of ${trip.rh}.</p>
+      
+      <p>The wind speed is ${Math.round(trip.wind_spd)} m/s coming from ${trip.wind_cdir_full}.</p>
+      
+      <p>The probability of rain is ${trip.pop}%.</p>
+      
+      <p>There are ${trip.snow / 10} cm snow.</p>`
 
-    case "N+":
-      score_tag.innerHTML = "strong negative";
-      break;
+      cardBody.appendChild(dest);
+      cardBody.appendChild(date);
+      cardBody.appendChild(time);
+      cardBody.appendChild(weather);
+      picCont.appendChild(pic);
+      card.appendChild(picCont);
+      card.appendChild(cardBody);
+      container.appendChild(card);
+  });
 
-    case "NONE":
-      score_tag.innerHTML = "without polarity";
-      break;
-  } */
+  // clear inptus
+  destInput.value = "";
+  dateInput.value = "";
 };
 
 export { showResult };

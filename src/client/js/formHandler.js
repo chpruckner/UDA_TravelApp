@@ -21,8 +21,8 @@ const handleSubmit = (event) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        //Client.showResult(response days);
-        console.log(response);
+        Client.showResult(response, days);
+        //console.log(response);
       });
 
   } else {
