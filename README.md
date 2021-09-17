@@ -10,3 +10,6 @@ The project includes a simple form where you enter the location you are travelin
 
 ## Project Description
 
+## Thanks
+
+Geeks for geeks (https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/)

@@ -1,15 +1,15 @@
 const showResult = (data) => {
-  const agreement = document.querySelector(".char-agree-content");
+  /* const agreement = document.querySelector(".char-agree-content");
   const subjectivity = document.querySelector(".char-sub-content");
   const confidence = document.querySelector(".char-confi-content");
   const irony = document.querySelector(".char-irony-content");
-  const score_tag = document.querySelector(".char-score-content");
+  const score_tag = document.querySelector(".char-score-content"); */
 
   //show result div
   document.getElementById("results").classList.add("show");
 
   // clear last result
-  agreement.innerHTML = "";
+  /* agreement.innerHTML = "";
   subjectivity.innerHTML = "";
   confidence.innerHTML = "";
   irony.innerHTML = "";
@@ -71,7 +71,7 @@ const showResult = (data) => {
     case "NONE":
       score_tag.innerHTML = "without polarity";
       break;
-  }  
+  } */
 };
 
 export { showResult };

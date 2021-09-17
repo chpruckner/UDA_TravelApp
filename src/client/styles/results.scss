@@ -1,7 +1,7 @@
 @import "variables.scss";
 
 #results {
-  //display: none;
+  display: none;
   &.show {
     display: block;
   }

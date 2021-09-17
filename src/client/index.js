@@ -1,5 +1,5 @@
 import { handleSubmit } from "./js/formHandler";
-import { checkInput }   from "./js/checkInput";
+import { handleDate }   from "./js/handleDate";
 import { showResult }   from "./js/showResult";
 
 import "./styles/resets.scss";
@@ -12,4 +12,4 @@ import "./styles/results.scss"
 console.log("This app is on fire");
 
 
-export { handleSubmit, checkInput, showResult };
+export { handleSubmit, handleDate, showResult };

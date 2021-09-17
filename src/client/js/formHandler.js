@@ -3,25 +3,31 @@ const handleSubmit = (event) => {
   //hide result div
   document.getElementById("results").classList.remove("show");
 
-  let userUrl = document.getElementById("url").value;
+  let city = document.getElementById("city").value;
+  let date = document.getElementById("start-date").value;
 
-  if (Client.checkInput(userUrl)) {
+  //console.log({city});
+  //console.log({date});
+
+  const { check, days } = Client.handleDate(date);
+  if (check) {
     fetch("/travel", {
       method: "POST",
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ url: userUrl }),
+      body: JSON.stringify({ city, date, days }),
     })
       .then((response) => response.json())
       .then((response) => {
-        Client.showResult(response);
+        //Client.showResult(response days);
+        console.log(response);
       });
 
   } else {
-    console.error(`${userUrl} is not a valid URL.`);
-    alert("Please enter a valid URL starting wit 'http' or 'https'!");
+    console.error(`${date} is not a valid date, because it is in the past.`);
+    alert("Please enter a date that is not in the past!");
   }
 };
 
