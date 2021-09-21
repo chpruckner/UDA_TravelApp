@@ -30,6 +30,9 @@ app.post("/travel", async (req, res) => {
   console.log("Request received");
   const {city, date, days} = req.body;
 
+  // dealing with blanks or other special characters in city name
+  const city_q = encodeURI(city);
+
   // api keys
   const geoNamesKEY = process.env.GN_USER;
   const weatherKEY = process.env.WB_KEY;
@@ -47,14 +50,14 @@ app.post("/travel", async (req, res) => {
 
   // fetching data from geonames.org API
   const GNRes1 = await fetch(
-    `${geoNamesURL}q=${city}&maxRows=1&username=${geoNamesKEY}`
+    `${geoNamesURL}q=${city_q}&maxRows=1&username=${geoNamesKEY}`
   );
 
   try {
     const GNRes2 = await GNRes1.json();
 
     // check if a city with the name was found
-    if (GNRes2.totalResultsCount > 1) {
+    if (GNRes2.totalResultsCount > 0) {
       name = GNRes2.geonames[0].name;
       lat = GNRes2.geonames[0].lat;
       lng = GNRes2.geonames[0].lng;
@@ -89,8 +92,6 @@ app.post("/travel", async (req, res) => {
       currTrip.wind_spd       = data[days].wind_spd;
       currTrip.pop            = data[days].pop;
 
-      //console.log({currTrip});
-
     } catch (error) {
       console.error(error);
     }
@@ -107,8 +108,12 @@ app.post("/travel", async (req, res) => {
     currTrip.pop = "n/a";
   }
 
+  // deal with whitespaces in "name"
+  let name_q = name.split(" ").join("+");
+  name_q = encodeURI(name_q);
+
   // fetch picture of city (or country) from pixabay.com
-  const PBRes1 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${name}&image_type=photo`)
+  const PBRes1 = await fetch(`${pixelbayURL}?key=${pixelbayKEY}&q=${name_q}&image_type=photo`);
 
   try {
     const PBRes2 = await PBRes1.json();

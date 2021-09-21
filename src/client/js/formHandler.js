@@ -6,9 +6,6 @@ const handleSubmit = (event) => {
   let city = document.getElementById("city").value;
   let date = document.getElementById("start-date").value;
 
-  //console.log({city});
-  //console.log({date});
-
   const { check, days } = Client.handleDate(date);
   if (check) {
     fetch("/travel", {
@@ -22,7 +19,6 @@ const handleSubmit = (event) => {
       .then((response) => response.json())
       .then((response) => {
         Client.showResult(response, days);
-        //console.log(response);
       });
 
   } else {

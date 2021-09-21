@@ -1,5 +1,12 @@
 @import "variables.scss";
 
+.warning {
+  border: 2px solid $primary;
+  padding: 1rem;
+  font-size: 21px;
+  font-weight: 500;
+}
+
 #results {
   display: none;
   &.show {

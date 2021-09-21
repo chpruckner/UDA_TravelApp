@@ -9,7 +9,4 @@ import "./styles/footer.scss";
 import "./styles/header.scss";
 import "./styles/results.scss"
 
-console.log("This app is on fire");
-
-
 export { handleSubmit, handleDate, showResult };
