@@ -13,18 +13,22 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "babel-jest": "^27.2.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jest": "^27.2.0",
     "node-fetch": "^2.6.2",
     "node-polyfill-webpack-plugin": "^1.1.4",
+    "regenerator-runtime": "^0.13.9",
     "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
-    "@babel/preset-env": "^7.14.2",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
@@ -37,5 +41,10 @@
     "terser-webpack-plugin": "^5.1.2",
     "webpack-dev-server": "^4.1.0",
     "workbox-webpack-plugin": "^6.3.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./__test__/setupTests.js"
+    ]
   }
 }

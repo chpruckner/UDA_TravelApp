@@ -15,7 +15,7 @@ const handleDate = date => {
   }
 
   const todayShort = `${y}-${m}-${d}`;
-  document.getElementById("start-date").setAttribute("min", todayShort);
+  //document.getElementById("start-date").setAttribute("min", todayShort);
 
   const timespan = (userDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
   const timespanRound = Math.ceil(timespan);

@@ -1,4 +1,4 @@
-const showResult = (arr, days) => {
+const showResult = (arr) => {
   const container = document.getElementById("trip-container");
   const destInput = document.getElementById("city");
   const dateInput = document.getElementById("start-date");
@@ -54,7 +54,7 @@ const showResult = (arr, days) => {
 
         const time = document.createElement("div");
         time.classList.add("trip-list-item-until");
-        days > 0 ? time.innerHTML = `This trip is ${days} days away.`: time.innerHTML = "The trip starts today!";
+        trip.days > 0 ? time.innerHTML = `This trip is ${trip.days} days away.`: time.innerHTML = "The trip starts today!";
 
         const weather = document.createElement("div");
         weather.classList.add("trip-list-item-weather");

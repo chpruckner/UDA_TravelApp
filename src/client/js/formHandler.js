@@ -18,7 +18,7 @@ const handleSubmit = (event) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        Client.showResult(response, days);
+        Client.showResult(response);
       });
 
   } else {

@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // Server setup
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });
 
@@ -73,6 +73,8 @@ app.post("/travel", async (req, res) => {
   } catch (err) {
     console.error(err);
   }
+
+  currTrip.days = days;
 
   // fetch weather from weatherbit.io 
   if (days < 16) {
@@ -136,7 +138,6 @@ app.post("/travel", async (req, res) => {
         console.error(err);
       }
     }
-    
     // push current trip in tripList array
     tripList.push(currTrip);
     res.send(tripList);
@@ -146,3 +147,5 @@ app.post("/travel", async (req, res) => {
     console.error(err);
   }
 });
+
+module.exports = { app };
