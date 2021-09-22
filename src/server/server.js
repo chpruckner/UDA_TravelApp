@@ -34,14 +34,10 @@ app.post("/travel", async (req, res) => {
   const city_q = encodeURI(city);
 
   // api keys - production
-  /* const geoNamesKEY = process.env.GN_USER;
+  const geoNamesKEY = process.env.GN_USER;
   const weatherKEY = process.env.WB_KEY;
-  const pixelbayKEY = process.env.PB_KEY; */
+  const pixelbayKEY = process.env.PB_KEY;
   
-  // api keys for submission
-  const geoNamesKEY = "scriptkitty";
-  const weatherKEY = "17b48eaeabe24537927d83fb709cbd58";
-  const pixelbayKEY = "23364936-18de1ae3471ef1fa5baca9b03";
   // base urls
   const geoNamesURL = "http://api.geonames.org/searchJSON?";
   const weatherURL = "http://api.weatherbit.io/v2.0/";
